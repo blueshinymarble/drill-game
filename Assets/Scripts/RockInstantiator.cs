@@ -10,7 +10,8 @@ public class RockInstantiator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        maxStageRocks = 100;
+        SpawnRocksOnStart();
     }
 
     // Update is called once per frame
@@ -23,7 +24,9 @@ public class RockInstantiator : MonoBehaviour
     {
         for (int i = 0; i < maxStageRocks; i++)
         {
-
+            GameObject newRock = rocks[Random.Range(0, rocks.Length)];
+            GameObject stageRocks = Instantiate(newRock, transform.position, Quaternion.identity);
+            stageRocks.transform.parent = gameObject.transform;
         }
     }
 }
