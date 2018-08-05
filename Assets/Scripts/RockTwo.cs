@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : MonoBehaviour
+public class RockTwo : MonoBehaviour
 {
     private Player player;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 
     private void OnMouseOver()
     {// if cursor selection is enabled on the player then it will change the rocks to a color and set their rags to selected
@@ -50,6 +50,6 @@ public class Rock : MonoBehaviour
 
     /*private void OnMouseDown()
     {
-        player.clickedRock.tag = gameObject.tag;
+        player.clickedRock = gameObject;
     }*/
 }

@@ -6,6 +6,8 @@ using System.Linq;
 public class Player : MonoBehaviour
 {
     public Texture2D mouseTexture;
+    public bool mousePressed;
+    public GameObject clickedRock;
 
     private float speed = 10f;
     private Vector3 target;
@@ -13,6 +15,8 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        clickedRock = null;
+        mousePressed = false;
         target = transform.position;
 	}
 	
@@ -67,7 +71,14 @@ public class Player : MonoBehaviour
     void RockSelector()
     {
         //while the mouse button is held down change the mouse cursor to a target
-        
+        if (Input.GetMouseButton(0))
+        {
+            mousePressed = true;
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            mousePressed = false;
+        }
     }
 
     //when the mouse button is clicked and held down selection mode begins
