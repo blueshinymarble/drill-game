@@ -17,11 +17,8 @@ public class Rock : MonoBehaviour
 		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void GetRockChain()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("hit");
-        }
+
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
+    public Texture2D mouseTexture;
+
     private float speed = 10f;
     private Vector3 target;
 
@@ -18,7 +20,8 @@ public class Player : MonoBehaviour
 	void Update ()
     {
         FaceMouse();
-        MovePlayerToMouseClick();
+        //MovePlayerToMouseClick();
+        RockSelector();
 	}
 
     void FaceMouse() // makes sure the drill is always facing the mouse. need to switch this on if mouse control is on. will use it for the time being while we test the game
@@ -39,5 +42,39 @@ public class Player : MonoBehaviour
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        /*if (collision.tag == "Rock_1")
+        {
+            collision.GetComponent<Animator>().Play("test_rock minimize animation");
+        }
+        else if(collision.tag == "Rock_2")
+        {
+            collision.GetComponent<Animator>().Play("test_rock2 minimize animation");
+        }
+        else if(collision.tag == "Rock_3")
+        {
+            collision.GetComponent<Animator>().Play("test_rock3 minimize animation");
+        }*/
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //collision.GetComponent<Animator>().Play("Idle");
+    }
+
+    void RockSelector()
+    {
+        //while the mouse button is held down change the mouse cursor to a target
+        
+    }
+
+    //when the mouse button is clicked and held down selection mode begins
+    //the rock that is clicked on is stored in a variable.
+    //this rock must be adjacent to the drill.
+    //with the mouse button held down the player can highlight any rock that is close enough to the rock before it
+    //these rocks are stored in a list so that at the end of the chain these rocks will be destroyed
+    //the player's drill is then moved through each rock clicked towards the end of the chain and rests at the location of the last rock in the chain
+
 }
