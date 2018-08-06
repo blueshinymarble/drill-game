@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4427924960145180}
-  - component: {fileID: 114330237048991330}
   - component: {fileID: 70794487386610406}
   - component: {fileID: 50654869695530746}
   - component: {fileID: 95842944775161376}
+  - component: {fileID: 114885013411015046}
   m_Layer: 0
   m_Name: Rock_3
   m_TagString: Rock_3
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 212566115450516808}
   m_Layer: 0
   m_Name: Rock3
-  m_TagString: Untagged
+  m_TagString: Rock_3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114330237048991330
+--- !u!114 &114885013411015046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

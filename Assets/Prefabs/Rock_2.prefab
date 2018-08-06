@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4665083035756282}
-  - component: {fileID: 114877166865510846}
   - component: {fileID: 70517102527249942}
   - component: {fileID: 50115704225459794}
   - component: {fileID: 95203976173725648}
+  - component: {fileID: 114719551090414400}
   m_Layer: 0
   m_Name: Rock_2
   m_TagString: Rock_2
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 212117858015583350}
   m_Layer: 0
   m_Name: Rock2
-  m_TagString: Untagged
+  m_TagString: Rock_2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114877166865510846
+--- !u!114 &114719551090414400
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

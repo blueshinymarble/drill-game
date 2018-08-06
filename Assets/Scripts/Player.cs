@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     {
         FaceMouse();
         //MovePlayerToMouseClick();
-        RockSelector();
 	}
 
     void FaceMouse() // makes sure the drill is always facing the mouse. need to switch this on if mouse control is on. will use it for the time being while we test the game
@@ -68,18 +67,7 @@ public class Player : MonoBehaviour
         //collision.GetComponent<Animator>().Play("Idle");
     }
 
-    void RockSelector()
-    {
-        //while the mouse button is held down change the mouse cursor to a target
-        if (Input.GetMouseButton(0))
-        {
-            mousePressed = true;
-        }
-        else if(Input.GetMouseButtonUp(0))
-        {
-            mousePressed = false;
-        }
-    }
+
 
     //when the mouse button is clicked and held down selection mode begins
     //the rock that is clicked on is stored in a variable.

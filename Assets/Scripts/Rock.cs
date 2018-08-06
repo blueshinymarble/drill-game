@@ -4,52 +4,34 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    private Player player;
+
+    private Game game;
 
 	// Use this for initialization
 	void Start ()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
-	}
+        game = GameObject.Find("Game").GetComponent<Game>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
 		
 	}
-
+    
     private void OnMouseOver()
-    {// if cursor selection is enabled on the player then it will change the rocks to a color and set their rags to selected
-        if (player.mousePressed == true)
+    {// if cursor selection is enabled on the player then it will change the rocks to a color and set their tags to selected
+        Vector3 magnitudeToCheck = transform.position - game.lastRockSelected.transform.position;
+        if (Input.GetMouseButton(0) && gameObject.tag == game.selected && magnitudeToCheck.sqrMagnitude < 2f * 2f)//checks if the distance between this rock and the previously selected rock is close enough, if its too far then it wont be selected
         {
             gameObject.tag = "Selected";
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
-        else
-        {//changes the color of the rocks back to white when the mouse is released
-            GameObject[] toChange = GameObject.FindGameObjectsWithTag("Selected");
-            foreach (GameObject objToChange in toChange)
-            {
-                objToChange.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-
-                if (objToChange.GetComponent<Rock>())
-                {
-                    objToChange.tag = "Rock_1";
-                }
-                else if (objToChange.GetComponent<RockTwo>())
-                {
-                    objToChange.tag = "Rock_2";
-                }
-                else if (objToChange.GetComponent<RockThree>())
-                {
-                    objToChange.tag = "Rock_3";
-                }
-            }
+            game.lastRockSelected = gameObject.transform;
         }
     }
 
-    /*private void OnMouseDown()
-    {
-        player.clickedRock.tag = gameObject.tag;
-    }*/
+    private void OnMouseDown()
+    {//changes the tag of "selected" in the game script to this objects tag so that only objects of this type will be selected
+        game.selected = gameObject.tag;
+    }
 }
