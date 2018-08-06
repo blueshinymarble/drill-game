@@ -6,17 +6,24 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     public string selected;
-    public Transform lastRockSelected;
+    public Transform lastRockSelected; // this transform is used to make sure the player is selecting a rock that is close enough to them. it makes sure the player cant select a rock that is too far away
+    public GameObject[] toScore;
+
+    public float speed = 5f;
 
     private Text score;
     private GameObject player;
 
     private int playerScore;
+    private RockInstantiator rockInstantiator;
+    private Player playerScript;
     // Use this for initialization
     void Start()
     {
+        rockInstantiator = GameObject.Find("Rock Instantiator").GetComponent<RockInstantiator>();
         score = GameObject.Find("Score").GetComponent<Text>();
         player = GameObject.Find("Player");
+        playerScript = GameObject.Find("Player").GetComponent<Player>();
         lastRockSelected = player.transform;
         playerScore = 0;
     }
@@ -40,11 +47,13 @@ public class Game : MonoBehaviour
 
     void ScoreRocks()
     {
-        GameObject[] toScore = GameObject.FindGameObjectsWithTag("Selected");
+        toScore = GameObject.FindGameObjectsWithTag("Selected");
         playerScore += toScore.Length;
         score.text = playerScore.ToString();
         foreach(GameObject rock in toScore)
         {
+            player.transform.position = rock.transform.position;
+            rockInstantiator.currentRockCount--;
             Destroy(rock);
         }
         //score a number of points based on how many rocks you touched in your chain

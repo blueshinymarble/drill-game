@@ -27,6 +27,7 @@ public class Rock : MonoBehaviour
             gameObject.tag = "Selected";
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
             game.lastRockSelected = gameObject.transform;
+            //TODO send my transform to a list in the player script or game script that will make the player move to each transform in the list
         }
     }
 
