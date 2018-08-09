@@ -13,13 +13,13 @@ public class RockInstantiator : MonoBehaviour
     {
         maxStageRocks = 100;
         currentRockCount = 0;
-        SpawnRocksOnStart();
+       // SpawnRocksOnStart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        RefillRocks();
+        //RefillRocks();
     }
 
     void SpawnRocksOnStart()

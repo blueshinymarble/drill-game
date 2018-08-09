@@ -6,11 +6,13 @@ public class Rock : MonoBehaviour
 {
 
     private Game game;
+    private Player player;
 
 	// Use this for initialization
 	void Start ()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 	
 	// Update is called once per frame
@@ -27,12 +29,17 @@ public class Rock : MonoBehaviour
             gameObject.tag = "Selected";
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
             game.lastRockSelected = gameObject.transform;
-            //TODO send my transform to a list in the player script or game script that will make the player move to each transform in the list
+            player.transformsToMoveTo.Add(gameObject.transform.position);//TODO send my transform to a list in the player script or game script that will make the player move to each transform in the list
         }
     }
 
     private void OnMouseDown()
     {//changes the tag of "selected" in the game script to this objects tag so that only objects of this type will be selected
         game.selected = gameObject.tag;
+    }
+
+    public void DestroyMyself()
+    {
+        Destroy(gameObject);
     }
 }

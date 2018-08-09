@@ -31,18 +31,25 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
+            playerScript.moving = true;
+            playerScript.MoveToNextTransform();
+        }
+        /*if (Input.GetMouseButtonUp(0))
+        {
+            MovePlayer();
             //changes the color of the rocks back to white when the mouse is released
             /*GameObject[] toChange = GameObject.FindGameObjectsWithTag("Selected");
             foreach (GameObject objToChange in toChange)
             {
                 objToChange.GetComponentInChildren<SpriteRenderer>().color = Color.white;
                 objToChange.tag = objToChange.transform.GetChild(0).tag;
-            }*/
+            }
             ScoreRocks();
             lastRockSelected = player.transform;
-        }
+            playerScript.TestMovePlayer();
+        }*/
     }
 
     void ScoreRocks()
@@ -52,9 +59,8 @@ public class Game : MonoBehaviour
         score.text = playerScore.ToString();
         foreach(GameObject rock in toScore)
         {
-            player.transform.position = rock.transform.position;
             rockInstantiator.currentRockCount--;
-            Destroy(rock);
+            //Destroy(rock);
         }
         //score a number of points based on how many rocks you touched in your chain
         //move the player to each rock
