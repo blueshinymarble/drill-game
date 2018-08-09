@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     public List<GameObject> gameObjectsToMoveTo = new List<GameObject>();
     public bool moving;
 
+    private RockInstantiator rockInstantiator;
     private float speed;
     private Vector3 target;
     private Game game;
     private Rigidbody2D myRigidBody2D;
     private Vector3 targetMouseClick;
     private List<GameObject> gameObjectsToDestroy = new List<GameObject>();
+    private ScoreKeeper scoreKeeper;
 
 	// Use this for initialization
 	void Start ()
@@ -31,6 +33,8 @@ public class Player : MonoBehaviour
         speed = 5f;
         targetMouseClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetMouseClick.z = transform.position.z;
+        rockInstantiator = GameObject.Find("Rock Instantiator").GetComponent<RockInstantiator>();
+        scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
     }
 	
 	// Update is called once per frame
@@ -90,10 +94,12 @@ public class Player : MonoBehaviour
         }
         else if (gameObjectsToMoveTo .Count == 0) // if there are no more things to move to the moving bool is set to false and the last selected item resets to the player
         {
+            rockInstantiator.currentRockCount -= gameObjectsToDestroy.Count;
             foreach (GameObject toDestroy in gameObjectsToDestroy)
             {
-                Destroy(toDestroy);
+                Destroy(toDestroy); // destroy the rocks in the chain
             }
+            scoreKeeper.AddScore(gameObjectsToDestroy.Count);
             gameObjectsToDestroy.RemoveRange(0, gameObjectsToDestroy.Count);
             game.lastRockSelected = transform;
             moving = false;
@@ -122,9 +128,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    void DestoyRocksInRadius()
+    public void DestoyRocksInRadius()
     {
+        GameObject[] rockOneArray = GameObject.FindGameObjectsWithTag("Rock_1");
+        GameObject[] rockTwoArray = GameObject.FindGameObjectsWithTag("Rock_2");
+        GameObject[] rockThreeArray = GameObject.FindGameObjectsWithTag("Rock_3");
+        GameObject[] rockFourArray = GameObject.FindGameObjectsWithTag("Rock_4");
+        GameObject[] rockFiveArray = GameObject.FindGameObjectsWithTag("Rock_5");
+        List<GameObject> allRocks = new List<GameObject>();
+        allRocks.AddRange(rockOneArray);
+        allRocks.AddRange(rockTwoArray);
+        allRocks.AddRange(rockThreeArray);
+        allRocks.AddRange(rockFourArray);
+        allRocks.AddRange(rockFiveArray);
 
+        foreach (GameObject rock in allRocks)
+        {
+            Vector3 magnitudeToCompare = transform.position - rock.transform.position;
+            if (magnitudeToCompare.sqrMagnitude < 3f * 3f)
+            {
+                Destroy(rock);
+            }
+        }
     }
 }
 

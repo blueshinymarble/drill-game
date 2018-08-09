@@ -43,6 +43,11 @@ public class Game : MonoBehaviour
             }
             lastRockSelected = player.transform;
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            playerScript.DestoyRocksInRadius();
+        }
         /*if (Input.GetMouseButtonDown(0))
         {
             playerScript.moving = true;

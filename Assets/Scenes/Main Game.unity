@@ -341,6 +341,7 @@ MonoBehaviour:
   mousePressed: 0
   clickedRock: {fileID: 0}
   transformsToMoveTo: []
+  gameObjectsToMoveTo: []
   moving: 0
 --- !u!4 &501205398
 Transform:
@@ -858,6 +859,7 @@ GameObject:
   - component: {fileID: 1278575450}
   - component: {fileID: 1278575449}
   - component: {fileID: 1278575448}
+  - component: {fileID: 1278575451}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -936,6 +938,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1278575446}
+--- !u!114 &1278575451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1278575446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7328342bd8b9d43b0a0d80f16bfd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScore: 0
 --- !u!1 &1352282375
 GameObject:
   m_ObjectHideFlags: 0
