@@ -19,7 +19,7 @@ public class RockInstantiator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //RefillRocks();
+        RefillRocks();
     }
 
     void SpawnRocksOnStart()

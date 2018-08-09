@@ -7,10 +7,13 @@ public class Rock : MonoBehaviour
 
     private Game game;
     private Player player;
+    private Vector3 magnitudeToCheck;
+    private GameObject playerObject;
 
 	// Use this for initialization
 	void Start ()
     {
+        playerObject = GameObject.Find("Player");
         game = GameObject.Find("Game").GetComponent<Game>();
         player = GameObject.Find("Player").GetComponent<Player>();
     }
@@ -23,13 +26,16 @@ public class Rock : MonoBehaviour
     
     private void OnMouseOver()
     {// if cursor selection is enabled on the player then it will change the rocks to a color and set their tags to selected
-        Vector3 magnitudeToCheck = transform.position - game.lastRockSelected.transform.position;
-        if (Input.GetMouseButton(0) && gameObject.tag == game.selected && magnitudeToCheck.sqrMagnitude < 2f * 2f)//checks if the distance between this rock and the previously selected rock is close enough, if its too far then it wont be selected
+        if (game.lastRockSelected != null)
+        {
+            magnitudeToCheck = transform.position - game.lastRockSelected.transform.position;
+        }
+        if (Input.GetMouseButton(0) && gameObject.tag == game.selected && magnitudeToCheck.sqrMagnitude < 2.5f * 2.5f)//checks if the distance between this rock and the previously selected rock is close enough, if its too far then it wont be selected
         {
             gameObject.tag = "Selected";
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
             game.lastRockSelected = gameObject.transform;
-            player.transformsToMoveTo.Add(gameObject.transform.position);//TODO send my transform to a list in the player script or game script that will make the player move to each transform in the list
+            player.gameObjectsToMoveTo.Add(gameObject);//TODO send my transform to a list in the player script or game script that will make the player move to each transform in the list
         }
     }
 
@@ -41,5 +47,13 @@ public class Rock : MonoBehaviour
     public void DestroyMyself()
     {
         Destroy(gameObject);
+    }
+
+    public void ResetMe()
+    {
+        gameObject.tag = transform.GetChild(0).tag;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        game.lastRockSelected = playerObject.transform;
+        player.gameObjectsToMoveTo.RemoveRange(0, player.gameObjectsToMoveTo.Count);
     }
 }

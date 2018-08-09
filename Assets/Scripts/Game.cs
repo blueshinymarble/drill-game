@@ -31,6 +31,18 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonUp(0) && playerScript.gameObjectsToMoveTo.Count > 1)
+        {
+            playerScript.moving = true;
+        }
+        else if (Input.GetMouseButtonUp(0) && playerScript.gameObjectsToMoveTo.Count == 1)
+        {
+            if (lastRockSelected.GetComponent<Rock>())
+            {
+                lastRockSelected.GetComponent<Rock>().ResetMe();
+            }
+            lastRockSelected = player.transform;
+        }
         /*if (Input.GetMouseButtonDown(0))
         {
             playerScript.moving = true;
